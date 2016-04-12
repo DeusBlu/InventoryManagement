@@ -10,6 +10,3 @@ C:\Users\desmond\Desktop\RPGPlayer\RPGPlayer\obj\Debug\RPGPlayer.pdb
 C:\Users\desmond\Desktop\RPGPlayer\RPGPlayer\bin\Debug\RPGPlayer.exe
 C:\Users\desmond\Desktop\RPGPlayer\RPGPlayer\bin\Debug\RPGPlayer.pdb
 C:\Users\desmond\Desktop\RPGPlayer\RPGPlayer\obj\Debug\RPGPlayer.csprojResolveAssemblyReference.cache
-C:\C# Projects\InventoryManagement\RPGPlayer\bin\Debug\RPGPlayer.exe.config
-C:\C# Projects\InventoryManagement\RPGPlayer\obj\Debug\RPGPlayer.exe
-C:\C# Projects\InventoryManagement\RPGPlayer\obj\Debug\RPGPlayer.pdb
