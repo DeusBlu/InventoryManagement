@@ -9,10 +9,101 @@ namespace RPGPlayer
     class Inventory
     {
         private List<Item> inventory;
+        private int currentSize;
+        private int currentCount;
 
-        public Inventory(int size)
+        // constructs the inventory setting the total gameMax size and
+        // the current inventory size, gameMax assigns the memory at
+        // construction time
+        public Inventory(int size, int gameMax)
         {
-            inventory = new List<Item>(size);
+            SetCurrentSize(size);
+            inventory.Capacity = gameMax;
+        }
+        // returns the total max size the inventory is alowed to expand to
+        public int GetMaxSize()
+        {
+            return inventory.Capacity;
+        }
+        // returns how big the inventory currently is
+        public int GetCurrentSize()
+        {
+            return currentSize;
+        }
+        // returns the number of items currently in the inventory
+        public int GetCurrentCount()
+        {
+            return currentCount;
+        }
+        // change how big the inventory is, must be greater than 0 
+        // and less than or equal to capacity
+        public bool SetCurrentSize(int size)
+        {
+            if (size > 0 && size <= inventory.Capacity)
+            {
+                currentSize = size;
+                return true;
+            }
+            return false;
+        }
+        // Places the passed item into the provided index and returns 
+        // the item previously in that location
+        public Item AddItemToLocation(int index, Item item)
+        {
+            if (index > 0 && index <= currentSize)
+            {
+                Item previousItem = inventory[index];
+                RemoveItem(index);
+                inventory[index] = item;
+                ++currentCount;
+                return previousItem;
+            }
+            return null;
+        }
+        // removes the item at index, returns true if successful
+        public bool RemoveItem(int index)
+        {
+            if(index > 0 && index <= currentSize && inventory[index] != null)
+            {
+                inventory[index] = null;
+                --currentCount;
+                return true;
+            }
+            return false;
+        }
+        // returns the item at provided index, returns null if the index
+        // is empty or does not exist (is below 0 or above capacity)
+        public Item GetItemLocation(int index)
+        {
+            if(index > 0 && index <= currentSize)
+            {
+                return inventory[index];
+            }
+            return null;
+        }
+        // returns the index of the next empty spot in the array
+        public int GetFirstEmptyIndex()
+        {
+            if (currentCount < currentSize)
+            {
+                for (int iter = 0; iter < currentSize; ++iter)
+                {
+                    if (inventory[iter] == null)
+                    {
+                        return iter;
+                    }
+                }
+            }
+            return -1;
+        }
+        // returns true if the inventory is full
+        public bool IsFull()
+        {
+            if(currentCount == currentSize)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

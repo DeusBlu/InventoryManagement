@@ -5,12 +5,15 @@ namespace RPGPlayer
 {
     class Equipment
     {
+        private Inventory playerInventory;
         private Hashtable equipment = new Hashtable();
         private EquipSlots equipState = new EquipSlots();
         private int nextSlot = 5;
 
-        public Equipment()
+
+        public Equipment(Inventory playerInventory)
         {
+            this.playerInventory = playerInventory;
             equipState = equipState | EquipSlots.NO_WEAPONS;
         }
 
