@@ -7,14 +7,11 @@ namespace RPGPlayer
     {
         private Hashtable equipment = new Hashtable();
         private EquipSlots equipState = new EquipSlots();
-        private int nextSlot;
-
-        private bool debug = false;
+        private int nextSlot = 5;
 
         public Equipment()
         {
             equipState = equipState | EquipSlots.NO_WEAPONS;
-            nextSlot = 5;
         }
 
         // Equips the item passed to the EquipSlot passed. If the equipment cannot be equipped
