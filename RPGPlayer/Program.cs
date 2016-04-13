@@ -19,6 +19,28 @@ namespace RPGPlayer
             {
                 Console.WriteLine("True");
             }
+
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            int currentCount = playerInventory.GetCurrentCount();
+            int currentSize = playerInventory.GetCurrentSize();
+            Gear slot1 = (Gear)playerInventory.GetItemLocation(0);
+            int maxSize = playerInventory.GetMaxSize();
+            bool isFull = playerInventory.IsFull();
+            playerInventory.RemoveItem(0);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), gear);
+            isFull = playerInventory.IsFull();
+            currentCount = playerInventory.GetCurrentCount();
+            Console.WriteLine("Done!");
         }
     }
 }

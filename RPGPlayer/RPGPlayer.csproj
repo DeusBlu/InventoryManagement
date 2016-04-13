@@ -45,6 +45,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="Gear.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
