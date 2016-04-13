@@ -8,17 +8,17 @@ namespace RPGPlayer
 {
     class Inventory
     {
-        private List<Item> inventory;
-        private int currentSize;
-        private int currentCount;
+        private List<Item> inventory = new List<Item>();
+        private int currentSize = 0;
+        private int currentCount = 0;
 
         // constructs the inventory setting the total gameMax size and
         // the current inventory size, gameMax assigns the memory at
         // construction time
         public Inventory(int size, int gameMax)
         {
-            SetCurrentSize(size);
             inventory.Capacity = gameMax;
+            SetCurrentSize(size);
         }
         // returns the total max size the inventory is alowed to expand to
         public int GetMaxSize()
@@ -37,20 +37,19 @@ namespace RPGPlayer
         }
         // change how big the inventory is, must be greater than 0 
         // and less than or equal to capacity
-        public bool SetCurrentSize(int size)
+        public void SetCurrentSize(int size)
         {
-            if (size > 0 && size <= inventory.Capacity)
+            while (currentSize < size && currentSize <= inventory.Capacity)
             {
-                currentSize = size;
-                return true;
+                inventory.Add(null);
+                ++currentSize;
             }
-            return false;
         }
         // Places the passed item into the provided index and returns 
         // the item previously in that location
         public Item AddItemToLocation(int index, Item item)
         {
-            if (index > 0 && index <= currentSize)
+            if (index >= 0 && index <= currentSize)
             {
                 Item previousItem = inventory[index];
                 RemoveItem(index);
@@ -58,12 +57,12 @@ namespace RPGPlayer
                 ++currentCount;
                 return previousItem;
             }
-            return null;
+            return item;
         }
         // removes the item at index, returns true if successful
         public bool RemoveItem(int index)
         {
-            if(index > 0 && index <= currentSize && inventory[index] != null)
+            if(index >= 0 && index <= currentSize && inventory[index] != null)
             {
                 inventory[index] = null;
                 --currentCount;
@@ -75,7 +74,7 @@ namespace RPGPlayer
         // is empty or does not exist (is below 0 or above capacity)
         public Item GetItemLocation(int index)
         {
-            if(index > 0 && index <= currentSize)
+            if(index >= 0 && index <= currentSize)
             {
                 return inventory[index];
             }
