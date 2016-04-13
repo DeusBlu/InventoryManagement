@@ -19,7 +19,7 @@ namespace RPGPlayer
 
         // Equips the item passed to the EquipSlot passed. If the equipment cannot be equipped
         // to the equip slot then the original item passed is returned.
-        public Gear Equip(Gear equip, EquipSlots slot)
+        public Gear Equip(ref Gear equip, EquipSlots slot)
         {
             Gear equipped = equip;
             if ((equip.EquipSlot & slot) != 0)

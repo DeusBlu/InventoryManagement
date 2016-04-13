@@ -14,7 +14,7 @@ namespace RPGPlayer
             Equipment equipment = new Equipment(ref playerInventory);
             EquipSlots THIRD_WEAPON = equipment.GenerateEquipSlot();
             Gear gear = new Weapon("Rapier", THIRD_WEAPON);
-            equipment.Equip(gear, gear.EquipSlot);
+            equipment.Equip(ref gear, gear.EquipSlot);
             if (equipment.IsEquipped(THIRD_WEAPON))
             {
                 Console.WriteLine("True");

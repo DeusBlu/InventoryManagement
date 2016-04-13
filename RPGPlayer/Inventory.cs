@@ -62,7 +62,7 @@ namespace RPGPlayer
         // removes the item at index, returns true if successful
         public bool RemoveItem(int index)
         {
-            if(index >= 0 && index <= currentSize && inventory[index] != null)
+            if (index >= 0 && index <= currentSize && inventory[index] != null)
             {
                 inventory[index] = null;
                 --currentCount;
@@ -74,7 +74,7 @@ namespace RPGPlayer
         // is empty or does not exist (is below 0 or above capacity)
         public Item GetItemLocation(int index)
         {
-            if(index >= 0 && index <= currentSize)
+            if (index >= 0 && index <= currentSize)
             {
                 return inventory[index];
             }
@@ -98,7 +98,11 @@ namespace RPGPlayer
         // returns true if the inventory is full
         public bool IsFull()
         {
-            return currentCount == currentSize;
+            if (currentCount == currentSize)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

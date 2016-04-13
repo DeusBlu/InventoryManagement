@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGPlayer
 {
-    class Character : Entity
+    class Character
     {
         // Primary stats for the player characters
         // Strength - effects attack power with normal weapons and block chance with heavy shields
