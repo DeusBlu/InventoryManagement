@@ -11,7 +11,7 @@ namespace RPGPlayer
         static void Main(string[] args)
         {
             Inventory playerInventory = new Inventory(10, 20);
-            Equipment equipment = new Equipment(playerInventory);
+            Equipment equipment = new Equipment(ref playerInventory);
             EquipSlots THIRD_WEAPON = equipment.GenerateEquipSlot();
             Gear gear = new Weapon("Rapier", THIRD_WEAPON);
             equipment.Equip(gear, gear.EquipSlot);

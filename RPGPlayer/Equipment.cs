@@ -11,7 +11,7 @@ namespace RPGPlayer
         private int nextSlot = 5;
 
 
-        public Equipment(Inventory playerInventory)
+        public Equipment(ref Inventory playerInventory)
         {
             this.playerInventory = playerInventory;
             equipState = equipState | EquipSlots.NO_WEAPONS;

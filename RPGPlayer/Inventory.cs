@@ -99,11 +99,7 @@ namespace RPGPlayer
         // returns true if the inventory is full
         public bool IsFull()
         {
-            if(currentCount == currentSize)
-            {
-                return true;
-            }
-            return false;
+            return currentCount == currentSize;
         }
     }
 }
