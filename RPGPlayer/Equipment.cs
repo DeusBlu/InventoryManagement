@@ -17,8 +17,8 @@ namespace RPGPlayer
             equipState = equipState | EquipSlots.NO_WEAPONS;
         }
 
-        // Equips the item passed to the EquipSlot passed. If the equipment cannot be equipped
-        // to the equip slot then the original item passed is returned.
+        /* Equips the item passed to the EquipSlot passed. If the equipment cannot be equipped
+        to the equip slot then the original item passed is returned. */
         public Gear Equip(Gear equip, EquipSlots slot)
         {
             Gear equipped = equip;
@@ -31,20 +31,53 @@ namespace RPGPlayer
                     // is the item to equip two handed
                     if(equip.EquipSlot == EquipSlots.TWO_HANDED)
                     {
-                        // will be 0 if only one hand is equipped
-                        if((equipState & EquipSlots.BOTH_HANDS) != 0)
+                        // will be 0 if a two handed sword is not equipped
+                        if ((equipState & EquipSlots.TWO_HANDED) == 0)
                         {
-                            // evaluates to true if the inventory has enough space to return the item
-                            if(!playerInventory.IsFull())
+                            // will be 0 if neither hand is equipped
+                            if ((equipState & EquipSlots.BOTH_HANDS) == 0)
                             {
-
+                                // evaluates to true if the inventory has enough space to return the item
+                                if (!playerInventory.IsFull())
+                                {
+                                    playerInventory.AddItemToLocation(playerInventory.GetFirstEmptyIndex(), (Item)equipment[EquipSlots.OFF_HAND]);
+                                    equipped = Unequip(EquipSlots.MAIN_HAND);
+                                    equipGear(equip, slot);
+                                }
+                            }
+                            else
+                            {
+                                if (slot == EquipSlots.MAIN_HAND)
+                                {
+                                    equipped = Unequip(EquipSlots.OFF_HAND);
+                                    equipGear(equip, slot);
+                                }
+                                else
+                                {
+                                    equipped = Unequip(EquipSlots.MAIN_HAND);
+                                    equipGear(equip, slot);
+                                }
                             }
                         }
+                        else
+                        {
+                            equipped = Unequip(slot);
+                            equipGear(equip, slot);
+                        }
                     }
+                    else
+                    {
+                        equipped = Unequip(slot);
+                        equipGear(equip, slot);
+                    }
+                }
+                else
+                {
+                    equipGear(equip, slot);
                 }
             }
             return equipped;
-        } // TODO: FINISH LOGIC!
+        }
 
         public Gear Unequip(EquipSlots slot)
         {
@@ -55,6 +88,12 @@ namespace RPGPlayer
                 equipment.Remove(slot);
             }
             return equipped;
+        }
+
+        private void equipGear(Gear equip, EquipSlots slot)
+        {
+            equipment.Add(slot, equip);
+            equipState = equipState | equip.EquipSlot;
         }
 
         public IDictionaryEnumerator GetIterator()
