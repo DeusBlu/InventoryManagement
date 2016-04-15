@@ -8,13 +8,12 @@ namespace RPGPlayer
         private Inventory playerInventory;
         private Hashtable equipment = new Hashtable();
         private EquipSlots equipState = new EquipSlots();
-        private int nextSlot = 5;
+        private int nextSlot = 4;
 
 
         public Equipment(ref Inventory playerInventory)
         {
             this.playerInventory = playerInventory;
-            equipState = equipState | EquipSlots.NO_WEAPONS;
         }
 
         /* Equips the item passed to the EquipSlot passed. If the equipment cannot be equipped
@@ -140,11 +139,10 @@ namespace RPGPlayer
     [Flags]
     public enum EquipSlots
     {
-        NO_WEAPONS = 1,
-        BOTH_WEAPONS = 1 << 1,
-        TWO_HANDED = 1 << 2,
-        MAIN_HAND = 1 << 3,
-        OFF_HAND = 1 << 4,
+        BOTH_WEAPONS = 1,
+        TWO_HANDED = 1 << 1,
+        MAIN_HAND = 1 << 2,
+        OFF_HAND = 1 << 3,
         BOTH_HANDS = MAIN_HAND | OFF_HAND
     }
 }

@@ -51,11 +51,23 @@ namespace RPGPlayer
         {
             if (index >= 0 && index <= currentSize)
             {
-                Item previousItem = inventory[index];
-                RemoveItem(index);
-                inventory[index] = item;
-                ++currentCount;
-                return previousItem;
+                if (!(item is Gear) && inventory[index] != null && item.Id == inventory[index].Id)
+                {
+                    if(item.StackSize + inventory[index].StackSize > item.StackMax)
+                    {
+                        int totalStack = item.StackSize + inventory[index].StackSize;
+                        inventory[index].StackSize = item.StackMax;
+                        item.StackSize = totalStack - item.StackMax;
+                    }
+                }
+                else
+                {
+                    Item previousItem = inventory[index];
+                    RemoveItem(index);
+                    inventory[index] = item;
+                    ++currentCount;
+                    return previousItem;
+                }
             }
             return item;
         }
